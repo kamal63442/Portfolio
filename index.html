@@ -253,6 +253,25 @@
   </div>
 </section>
 
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="portfolio section-bg">
+  <div class="container">
+    <div class="section-title">
+      <h2>Git-Folio</h2>
+      <p>Feel free to explore the repositories, contribute ideas, or fork projects that catch your eye.</p>
+      <p>If you have questions, suggestions, or just want to chat about all things tech, don't hesitate to reach out. I'm always up for a good coding conversation.</p>
+    </div>
+
+    <div class="row" id="repo-container">
+      <!-- GitHub repositories will be dynamically added here -->
+    </div>
+
+  </div>
+</section>
+
 <script>
   // GitHub API URL
   const githubApiUrl = 'https://api.github.com/users/kamal63442/repos';
@@ -286,14 +305,9 @@
       console.error('Error fetching GitHub repositories:', error);
     }
   });
-</script>
-<!-- End Portfolio Section -->
+ </script>
 
-
-
-
-
-  </main><!-- End #main -->
+</main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
