@@ -234,91 +234,61 @@
       </div>
     </section><!-- End Resume Section -->
 
-<!-- ======= Portfolio Section in modern style like cards ======= -->
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Portfolio Section -->
 <section id="portfolio" class="portfolio section-bg">
   <div class="container">
-
-    <div class="section-title">
+   <div class="section-title">
       <h2>Git-Folio</h2>
       <p>Feel free to explore the repositories, contribute ideas, or fork projects that catch your eye.</p>
-      </p>If you have questions, suggestions, or just want to chat about all things tech, don't hesitate to reach out. I'm always up for a good coding conversation.</p>
+      <p>If you have questions, suggestions, or just want to chat about all things tech, don't hesitate to reach out. I'm always up for a good coding conversation.</p>
     </div>
 
-    <div class="row" data-aos="fade-up">
-      <div class="col-lg-12 d-flex justify-content-center">
-        <ul id="portfolio-flters">
-          <li data-filter="*" class="filter-active">All</li>
-          <li data-filter=".filter-app">App</li>
-          <li data-filter=".filter-card">Backtesting</li>
-        </ul>
-      </div>
+    <div class="row" id="repo-container">
+      <!-- GitHub repositories will be dynamically added here -->
     </div>
 
-    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
-            <a href="https://github.com/kamal63442/Mouse-Virtual-desktop-switcher" title="More Details" target="_blank"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-            <a href="https://github.com/kamal63442/pitroskisFscore/tree/main" title="More Details"target='_blank'><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
-            <a href="https://github.com/kamal63442/Back-test-/blob/main/Effective_Potential_EQN.ipynb" title="More Details" target="_blank"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-            <a href="https://github.com/kamal63442/Game-TicTacToe" title="More Details" target="_blank"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
-            <a href="https://github.com/kamal63442/Back-test-/blob/main/PSAR-ATR.ipynb" title="More Details" target="_blank"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
-            <a href="https://github.com/kamal63442/Back-test-/blob/main/SMA%2CMMA%2CLMA.ipynb" title="More Details" target="_blank"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-</section><!-- End Portfolio Section -->
+</section>
+
+<script>
+  // GitHub API URL
+  const githubApiUrl = 'https://api.github.com/users/kamal63442/repos';
+
+  // Fetch GitHub repositories
+  $.ajax({
+    url: githubApiUrl,
+    dataType: 'json',
+    success: function (data) {
+      // Process each repository
+      data.forEach(function (repo) {
+        // Create a card for each repository
+        const card = `
+          <div class="col-lg-4">
+            <div class="card">
+              <a class="link" href="${repo.html_url}" target="_blank">
+                <div class="card-body">
+                  <h5 class="card-title">${repo.name}</h5>
+                  <p class="card-text">${repo.description || 'No description available'}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        `;
+
+        // Append the card to the container
+        $('#repo-container').append(card);
+      });
+    },
+    error: function (error) {
+      console.error('Error fetching GitHub repositories:', error);
+    }
+  });
+</script>
+<!-- End Portfolio Section -->
+
 
 
 
