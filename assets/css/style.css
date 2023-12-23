@@ -911,6 +911,21 @@ section {
   }
 }
 
+/* Add this inside the head tag or your stylesheet */
+<style>
+  /* Style for orange color */
+  .social-links a {
+    color: #ff8800; /* Change to your desired orange color code */
+    transition: color 0.3s ease-in-out; /* Add a transition effect for a smooth color change */
+  }
+
+  /* On hover, make the icons a bit darker for better visibility */
+  .social-links a:hover {
+    color: #cc6600; /* Darker shade of orange on hover */
+  }
+</style>
+
+
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
