@@ -1,3 +1,14 @@
+:root {
+  --primary-color: #149ddd;
+}
+
+a {
+  color: var(--primary-color);
+}
+
+.back-to-top {
+  background: var(--primary-color); 
+}
 
 /*--------------------------------------------------------------
 # General
